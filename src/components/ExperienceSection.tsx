@@ -11,7 +11,6 @@ interface TimelineItem {
   date: string;
   description: string;
   highlights?: string[];
-  bullets?: string[];
 }
 
 const ExperienceSection = () => {
@@ -25,21 +24,12 @@ const ExperienceSection = () => {
       title: 'Trainee Software Engineer (Unity Game Developer)',
       company: 'Juego Studios Pvt. Ltd. · Bangalore, India',
       date: 'Feb 2025 – Present',
-      description: 'Game Development Studio — Building and shipping 2D/3D Unity titles across casual mobile and real-time multiplayer.',
+      description: 'Building and shipping 2D/3D Unity games across casual mobile and real-time multiplayer. Working on gameplay systems, Photon Fusion 2 networking, physics-based mechanics, and performance optimization.',
       highlights: [
-        'Photon Fusion 2 Multiplayer',
-        'Physics-Based Mechanics',
-        'ScriptableObjects Architecture',
-        'NavMesh AI',
-        'SDK Integration',
-        'Performance Optimization',
-      ],
-      bullets: [
-        'Built and shipped 2D and 3D Unity titles across casual mobile and real-time multiplayer, owning gameplay systems, responsive Canvas UI, SDK integration (Google, Apple, Ads, Analytics), testing, and production Android/iOS builds.',
-        'Implemented Photon Fusion 2 multiplayer: matchmaking, networked object lifecycle, client-side prediction, and state synchronization.',
-        'Architected event-driven, decoupled systems with ScriptableObjects and the Observer pattern, letting gameplay features evolve independently and be tuned without code changes.',
-        'Engineered physics-based mechanics (Rigidbody, Joints, custom force models) and NavMesh-based NPC AI with state-driven behaviors.',
-        'Cut frame time and memory cost through profiling-driven optimization (object pooling, draw-call batching, memory management): FPS 35→60 on mid-range Android.',
+        'Unity 2D/3D',
+        'Photon Fusion 2',
+        'Physics & AI',
+        'Mobile Optimization',
       ],
     },
     {
@@ -153,17 +143,6 @@ const ExperienceSection = () => {
                     )}
                     <p className="font-body text-xs text-muted-foreground mb-3">{item.date}</p>
                     <p className="font-body text-muted-foreground text-sm mb-4">{item.description}</p>
-
-                    {item.bullets && (
-                      <ul className="space-y-2 mb-4">
-                        {item.bullets.map((bullet, i) => (
-                          <li key={i} className="flex gap-2 text-xs font-body text-muted-foreground leading-relaxed">
-                            <span className={`mt-1.5 w-1.5 h-1.5 rounded-full ${colors.bg} flex-shrink-0`} />
-                            <span>{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
 
                     {item.highlights && (
                       <div className="flex flex-wrap gap-2">
