@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Code2, Gamepad2, Lightbulb, Zap, Wifi, Box } from 'lucide-react';
+import { Code2, Gamepad2, Zap, Wifi, Box } from 'lucide-react';
 import developerAvatar from '@/assets/developer-avatar.jpg';
 
 const AboutSection = () => {
@@ -13,7 +13,6 @@ const AboutSection = () => {
     { icon: Code2, label: "C# / C++" },
     { icon: Wifi, label: "Multiplayer (Photon)" },
     { icon: Zap, label: "Performance Optimizer" },
-    { icon: Lightbulb, label: "System Architect" },
     { icon: Box, label: "Physics Systems" },
   ];
 

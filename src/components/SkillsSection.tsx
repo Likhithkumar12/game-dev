@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Code2, Cpu, Gamepad2, Settings, Palette, Wifi } from 'lucide-react';
+import { Code2, Cpu, Gamepad2, Settings, Zap, Wifi, Wrench, Layers } from 'lucide-react';
 
 const SkillsSection = () => {
   const ref = useRef(null);
@@ -9,40 +9,46 @@ const SkillsSection = () => {
 
   const skillCategories = [
     {
-      title: "Game Engines & Dev",
-      icon: Gamepad2,
+      title: "Languages",
+      icon: Code2,
       color: "primary",
-      skills: ["Unity 2D/3D", "Gameplay Programming", "Physics (Rigidbody, Joints)", "Cinemachine"],
+      skills: ["C#", "C++"],
     },
     {
-      title: "Programming",
-      icon: Code2,
+      title: "Unity",
+      icon: Gamepad2,
       color: "secondary",
-      skills: ["C#", "C++", "OOP & Design Patterns", "SOLID Principles"],
+      skills: ["Physics", "Cinemachine", "Timeline", "Animation", "Addressables", "UI Systems"],
     },
     {
       title: "Multiplayer",
       icon: Wifi,
       color: "accent",
-      skills: ["Photon Fusion", "Client-Server Architecture", "Network Sync", "Latency Handling"],
+      skills: ["Photon Fusion 2", "Client-Server Architecture", "State Synchronization", "Client-Side Prediction"],
     },
     {
-      title: "Gameplay Systems",
+      title: "Gameplay & AI",
       icon: Cpu,
       color: "primary",
-      skills: ["AI (State Machines, NavMesh)", "Player Controllers", "ScriptableObjects", "ECS / DOTS"],
+      skills: ["NavMesh", "Behavior Trees", "Hierarchical State Machines", "Physics-Based Gameplay", "Procedural Generation"],
     },
     {
-      title: "UI & Animation",
-      icon: Palette,
+      title: "Architecture",
+      icon: Layers,
       color: "secondary",
-      skills: ["Unity Canvas", "UI Toolkit", "TextMeshPro", "Animator & DOTween"],
+      skills: ["Design Patterns", "SOLID", "ScriptableObjects", "Event-Driven Systems", "Modular/Data-Driven Design"],
     },
     {
-      title: "Tools & Optimization",
-      icon: Settings,
+      title: "Optimization",
+      icon: Zap,
       color: "accent",
-      skills: ["Git & Rider", "Unity Profiler", "Object Pooling", "Addressables"],
+      skills: ["Unity Profiler", "Object Pooling", "Draw Call Batching", "LOD Systems", "Mobile Optimization", "Frame Rate Stabilization"],
+    },
+    {
+      title: "Tools",
+      icon: Wrench,
+      color: "primary",
+      skills: ["Git & GitHub", "Rider", "VS Code"],
     },
   ];
 

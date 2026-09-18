@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Gamepad2, Github, PersonStanding, Footprints } from 'lucide-react';
+import { Gamepad2, Github, PersonStanding, Puzzle, Grid3X3, ExternalLink } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface Project {
@@ -11,7 +11,9 @@ interface Project {
   icon: typeof Gamepad2;
   techStack: string[];
   githubUrl?: string;
+  playStoreUrl?: string;
   featured?: boolean;
+  featuredLabel?: string;
 }
 
 const ProjectsSection = () => {
@@ -21,29 +23,39 @@ const ProjectsSection = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "CarLeague",
-      description: "Fast-paced multiplayer vehicle game inspired by Rocket League. Built real-time networking with Photon Fusion, arcade vehicle physics, client-server architecture for state sync and latency handling, plus goal scoring and tick-based optimization.",
-      icon: Gamepad2,
-      techStack: ["Unity", "C#", "Photon Fusion", "Multiplayer", "Physics"],
-      githubUrl: "https://github.com/Likhithkumar12/CarLeague.git",
+      title: "MergeSparks",
+      description: "Developed and shipped a level-based casual puzzle game on Android with progressive difficulty, target-based objectives, and score systems. Designed a data-driven level progression system supporting configurable objectives, target scores, timers, and level-specific gameplay parameters. Optimized for performance, modularity, and scalability.",
+      icon: Puzzle,
+      techStack: ["Unity", "C#", "Mobile", "Ads SDK", "Android"],
+      playStoreUrl: "https://play.google.com/store/apps/details?id=com.sparks.merge",
       featured: true,
+      featuredLabel: "Play Store",
     },
     {
       id: 2,
+      title: "Sudoku Sparks",
+      description: "Built and shipped a Sudoku puzzle game with level-based progression, multiple difficulty tiers, and integrated ad SDK. Features clean gameplay UI, hint systems, and data-driven level configuration for scalable content creation. Available on Google Play Store.",
+      icon: Grid3X3,
+      techStack: ["Unity", "C#", "Mobile", "Ads SDK", "Android"],
+      playStoreUrl: "https://play.google.com/store/apps/details?id=com.sparks.sudoku",
+      featured: true,
+      featuredLabel: "Play Store",
+    },
+    {
+      id: 3,
+      title: "CarLeague",
+      description: "Engineered a Rocket League-inspired multiplayer game with physics-driven vehicle movement, boost mechanics, and accurate ball physics using custom Rigidbody constraints. Implemented networked game state management (goal events, match timer, score sync) using Photon Fusion's Host-Client Model. Built lobby system with matchmaking and tuned arcade handling with camera shake and collision feedback.",
+      icon: Gamepad2,
+      techStack: ["Unity", "C#", "Photon Fusion 2", "Multiplayer", "Physics"],
+      githubUrl: "https://github.com/Likhithkumar12/CarLeague.git",
+    },
+    {
+      id: 4,
       title: "Advanced Character Controller",
       description: "Custom Unity character controller delivering smooth, physics-based movement beyond Unity's defaults. Features state-based architecture (idle, moving, jumping), camera-relative control, and a modular reusable design optimized for performance.",
       icon: PersonStanding,
       techStack: ["Unity", "C#", "Physics", "State Machine", "Modular"],
       githubUrl: "https://github.com/Likhithkumar12/Advanced-Character-Controller-Unity-.git",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Royal Run",
-      description: "Endless runner with procedurally generated environments, lane switching, jumping, and obstacle avoidance. Includes object pooling for performance, dynamic difficulty progression, and a score & reward system to drive engagement.",
-      icon: Footprints,
-      techStack: ["Unity", "C#", "Procedural Gen", "Object Pooling"],
-      githubUrl: "https://github.com/Likhithkumar12/RoyalRun.git",
     },
   ];
 
@@ -73,7 +85,7 @@ const ProjectsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -88,8 +100,12 @@ const ProjectsSection = () => {
                     <project.icon className="w-6 h-6" />
                   </div>
                   {project.featured && (
-                    <span className="px-3 py-1 rounded-full bg-primary/90 text-primary-foreground text-xs font-display">
-                      Featured
+                    <span className={`px-3 py-1 rounded-full text-xs font-display ${
+                      project.featuredLabel === 'Play Store'
+                        ? 'bg-green-500/90 text-white'
+                        : 'bg-primary/90 text-primary-foreground'
+                    }`}>
+                      {project.featuredLabel || 'Featured'}
                     </span>
                   )}
                 </div>
@@ -112,14 +128,24 @@ const ProjectsSection = () => {
                   ))}
                 </div>
 
-                {project.githubUrl && (
-                  <Button variant="outline" size="sm" asChild className="w-full">
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4 mr-2" />
-                      View on GitHub
-                    </a>
-                  </Button>
-                )}
+                <div className="flex gap-3">
+                  {project.githubUrl && (
+                    <Button variant="outline" size="sm" asChild className="flex-1">
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-4 h-4 mr-2" />
+                        View on GitHub
+                      </a>
+                    </Button>
+                  )}
+                  {project.playStoreUrl && (
+                    <Button variant="outline" size="sm" asChild className="flex-1">
+                      <a href={project.playStoreUrl} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Google Play Store
+                      </a>
+                    </Button>
+                  )}
+                </div>
               </div>
 
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
