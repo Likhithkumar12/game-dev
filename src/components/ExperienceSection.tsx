@@ -54,14 +54,6 @@ const ExperienceSection = () => {
         'Unity Artificial Intelligence',
       ],
     },
-    {
-      id: 4,
-      type: 'education',
-      title: 'Pre-University (PCMC)',
-      company: 'Parijnan PU College, Mangalore',
-      date: 'May 2021',
-      description: 'Completed Pre-University with Physics, Chemistry, Mathematics, and Computer Science.',
-    },
   ];
 
   const getIcon = (type: string) => {
