@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Gamepad2, Github, PersonStanding, Puzzle, Grid3X3, ExternalLink } from 'lucide-react';
+import { Gamepad2, Github, Puzzle, Grid3X3, ExternalLink } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface Project {
@@ -12,6 +12,7 @@ interface Project {
   techStack: string[];
   githubUrl?: string;
   playStoreUrl?: string;
+  itchUrl?: string;
   featured?: boolean;
   featuredLabel?: string;
 }
@@ -48,14 +49,7 @@ const ProjectsSection = () => {
       icon: Gamepad2,
       techStack: ["Unity", "C#", "Photon Fusion 2", "Multiplayer", "Physics"],
       githubUrl: "https://github.com/Likhithkumar12/CarLeague.git",
-    },
-    {
-      id: 4,
-      title: "Advanced Character Controller",
-      description: "Custom Unity character controller delivering smooth, physics-based movement beyond Unity's defaults. Features state-based architecture (idle, moving, jumping), camera-relative control, and a modular reusable design optimized for performance.",
-      icon: PersonStanding,
-      techStack: ["Unity", "C#", "Physics", "State Machine", "Modular"],
-      githubUrl: "https://github.com/Likhithkumar12/Advanced-Character-Controller-Unity-.git",
+      itchUrl: "https://likhithkumar12.itch.io/carleague",
     },
   ];
 
@@ -85,60 +79,70 @@ const ProjectsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative rounded-2xl overflow-hidden glass-card border border-border/50 hover:border-primary/50 transition-all duration-500"
+              className="group relative rounded-2xl overflow-hidden glass-card border border-border/50 hover:border-primary/50 transition-all duration-500 flex flex-col justify-between"
             >
-              <div className="p-6 space-y-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/30 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                    <project.icon className="w-6 h-6" />
+              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/30 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                      <project.icon className="w-6 h-6" />
+                    </div>
+                    {project.featured && (
+                      <span className={`px-3 py-1 rounded-full text-xs font-display ${
+                        project.featuredLabel === 'Play Store'
+                          ? 'bg-green-500/90 text-white'
+                          : 'bg-primary/90 text-primary-foreground'
+                      }`}>
+                        {project.featuredLabel || 'Featured'}
+                      </span>
+                    )}
                   </div>
-                  {project.featured && (
-                    <span className={`px-3 py-1 rounded-full text-xs font-display ${
-                      project.featuredLabel === 'Play Store'
-                        ? 'bg-green-500/90 text-white'
-                        : 'bg-primary/90 text-primary-foreground'
-                    }`}>
-                      {project.featuredLabel || 'Featured'}
-                    </span>
-                  )}
+
+                  <h3 className="font-display font-semibold text-xl group-hover:text-primary transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground font-body text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {project.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-1 rounded text-xs font-body bg-muted text-muted-foreground"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                <h3 className="font-display font-semibold text-xl group-hover:text-primary transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground font-body text-sm leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-1 rounded text-xs font-body bg-muted text-muted-foreground"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-2 pt-4 mt-auto">
                   {project.githubUrl && (
-                    <Button variant="outline" size="sm" asChild className="flex-1">
+                    <Button variant="outline" size="sm" asChild className="flex-1 min-w-[120px]">
                       <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                         <Github className="w-4 h-4 mr-2" />
-                        View on GitHub
+                        GitHub
+                      </a>
+                    </Button>
+                  )}
+                  {project.itchUrl && (
+                    <Button variant="outline" size="sm" asChild className="flex-1 min-w-[120px]">
+                      <a href={project.itchUrl} target="_blank" rel="noopener noreferrer">
+                        <Gamepad2 className="w-4 h-4 mr-2 text-primary" />
+                        Play on Itch
                       </a>
                     </Button>
                   )}
                   {project.playStoreUrl && (
-                    <Button variant="outline" size="sm" asChild className="flex-1">
+                    <Button variant="outline" size="sm" asChild className="w-full">
                       <a href={project.playStoreUrl} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="w-4 h-4 mr-2" />
                         Google Play Store
