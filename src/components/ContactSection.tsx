@@ -1,7 +1,6 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Github, Linkedin, Mail, Phone, Send, Gamepad2 } from 'lucide-react';
+import { Github, Linkedin, Mail, Send, Gamepad2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
@@ -71,19 +70,6 @@ const ContactSection = () => {
               Have a game idea you'd like to bring to life? Looking for a skilled Unity developer to join your team? 
               I'm always excited to discuss new projects and opportunities.
             </p>
-
-            {/* Phone */}
-            <div className="flex items-center gap-4 p-4 rounded-xl glass-card border border-border/50">
-              <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                <Phone className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="font-display text-sm text-muted-foreground">Call me at</p>
-                <a href="tel:+919353836006" className="font-body text-lg hover:text-primary transition-colors">
-                  +91 9353836006
-                </a>
-              </div>
-            </div>
 
             {/* Email */}
             <div className="flex items-center gap-4 p-4 rounded-xl glass-card border border-border/50">
